@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <VBox alignment="TOP_CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
@@ -19,17 +18,14 @@
 
     <ComboBox fx:id="languageComboBox"/>
 
-    <TextField fx:id="keyNameTextField" promptText="Enter Key Name"/>
-    <TextField fx:id="translationTextField" promptText="Enter Translation"/>
-    <Button fx:id="addButton" text="Add Translation" onAction="#onAddButtonClick"/>
+    <TextArea fx:id="jobTitleTextArea" editable="false"/>
 
-    <TableView fx:id="jobTitleTable">
-        <columns>
-            <TableColumn fx:id="jobTitleColumn" text="Job Title">
-                <cellValueFactory>
-                    <PropertyValueFactory property="jobTitle"/>
-                </cellValueFactory>
-            </TableColumn>
-        </columns>
-    </TableView>
+    <Label text="Enter Key Name"/>
+    <TextField fx:id="keyNameTextField" promptText="Enter Key Name"/>
+
+    <Label text="Enter Translation"/>
+    <TextField fx:id="translationTextField" promptText="Enter Translation"/>
+
+    <Button fx:id="addButton" text="Add/Update Translation" onAction="#onAddButtonClick"/>
+
 </VBox>

@@ -1,11 +1,8 @@
 package org.example.localizationapplication;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,9 +15,7 @@ public class HelloController {
     @FXML
     public Label lblTitle;
     @FXML
-    public TableView<JobTitle> jobTitleTable;
-    @FXML
-    public TableColumn<JobTitle, String> jobTitleColumn;
+    public TextArea jobTitleTextArea;
     @FXML
     public TextField keyNameTextField;
     @FXML
@@ -46,7 +41,6 @@ public class HelloController {
         setLanguage(Locale.of("en"));
 
         languageComboBox.setOnAction(this::onLanguageChange);
-        jobTitleColumn.setCellValueFactory(new PropertyValueFactory<>("jobTitle"));
     }
 
     private void setLanguage(Locale locale) {
@@ -79,11 +73,11 @@ public class HelloController {
         String languageCode = getLanguageCode();
         try {
             List<String> jobTitles = db.getJobTitles(languageCode);
-            ObservableList<JobTitle> data = FXCollections.observableArrayList();
+            StringBuilder sb = new StringBuilder();
             for (String title : jobTitles) {
-                data.add(new JobTitle(title));
+                sb.append(title).append("\n");
             }
-            jobTitleTable.setItems(data);
+            jobTitleTextArea.setText(sb.toString());
         } catch (SQLException e) {
             showAlert("Database Error", e.getMessage());
         }
